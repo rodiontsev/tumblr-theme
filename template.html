@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title>
+
+    <link rel="shortcut icon" href="{Favicon}"/>
+    <link rel="alternate" type="application/rss+xml" name="RSS" href="{RSS}"/>
+
+    <!-- Default Colors -->
+    <meta name="color:Background" content="#FFFFFF"/>
+    <meta name="color:Text" content="#444444"/>
+    <meta name="color:Blockquote" content="#E6F1FD"/>
+    <meta name="color:Date" content="#777777"/>
+    <meta name="color:Header Background" content="#007AC2"/>
+    <meta name="color:Footer Background" content="#BBBBBB"/>
+
+    <!-- Links -->
+    <meta name="color:Link" content="#0055CC"/>
+    <meta name="color:Link Underline" content="#B2CCF0"/>
+    <meta name="color:Link Visited" content="#990099"/>
+    <meta name="color:Link Visited Underline" content="#E0B2E0"/>
+    <meta name="color:Link Hover" content="#CC0000"/>
+    <meta name="color:Link Hover Underline" content="#F0B2B2"/>
+
+    <style type="text/css">
+        html, body, ul, ol, li, dl, dt, dd, p, h1, h2, h3, h4, h5, h6, blockquote, form, fieldset, legend, table, td, th {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* The font-size percentage is of 16px. (0.875 * 16px = 14px) */
+        body {
+            font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+            font-size: 87.5%;
+            line-height: 1.7;
+            color: {color:Text};
+            background-color: {color:Background};
+        }
+
+        a {
+            color: {color:Link};
+            text-decoration: none;
+            border-bottom: 1px solid;
+            border-color: {color:Link Underline};
+        }
+
+        a:visited {
+            color: {color:Link Visited};
+            border-color: {color:Link Visited Underline};
+        }
+
+        a.fresh:visited {
+            color: {color:Link};
+            border-color: {color:Link Underline};
+        }
+
+        a:hover {
+            color: {color:Link Hover};
+            border-color: {color:Link Hover Underline};
+        }
+
+        a:visited:hover {
+            color: {color:Link Hover};
+            border-color: {color:Link Hover Underline};
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: normal;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 1.5em 0 0.2em;
+            
+        }
+
+        h2, h3, h4 {
+            margin: 1em 0 0.3em;
+        }
+
+        /* http://www.w3.org/TR/CSS2/selector.html#adjacent-selectors */
+        h1 + h2, h2 + h3, h3 + h4 {
+            margin-top: 0.5em;
+        }
+                
+        h2 {
+            font-size: 2em;
+        }
+        
+        h3 {
+            font-size: 1.5em;
+        }
+        
+        h4 {
+            font-size: 1.2em;
+        }
+
+        p {
+            margin-bottom: 1.33em;
+        }
+
+        blockquote {
+            font-style: italic;
+            background-color: {color:Blockquote};
+            padding: 1em;
+            margin-bottom: 1.33em;
+            border-radius: 2px;
+        }
+
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        img {
+            border: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        #wrapper {
+            position: relative;
+            margin: 0 auto;
+            width: 37em;
+            min-width: 500px;
+            min-height: 100%;
+        }
+
+        #header, #footer {
+            padding: 2em 0;
+        }
+
+        #header {
+            border-top: 3px solid {color:Header Background};
+        }
+
+        #header .navigation {
+            float: right;
+        }
+
+        #header .navigation ul li {
+            display: inline-block;
+            margin: 0 0.25em;
+        }
+
+        #header .navigation ul li:last-child {
+            margin-right: 0;
+        }
+
+        #content {
+            padding-bottom: 8em;
+        }
+
+        #posts .audio,
+        #posts .chat,
+        #posts .link,
+        #posts .photo,
+        #posts .photoset,
+        #posts .quote,
+        #posts .text,
+        #posts .video {
+            margin-bottom: 3em;
+        }
+
+        #posts li:first-child h2 {
+            margin-top: 0;
+        }
+
+        #posts .audio p.count {
+            font-size: 0.875em;
+            margin-bottom: 0.5em;
+        }
+
+        #posts .photo .photo-link a {
+            border: 0;
+        }
+
+        .post p + ul {
+            margin-top: -1em;
+        }
+
+        .post ul {
+            margin: 0 0 1em 2em;
+        }
+
+        .post ul > li {
+            text-indent: -1.3em;
+        }
+
+        .post ul > li:before {
+            content: '\2014\a0';
+        }
+
+        .meta {
+            font-size: 0.875em;
+            color: {color:Date};
+        }
+
+        .meta ul.tags, .meta span {
+            margin-right: 1em
+        }
+
+        .meta ul.tags, .meta ul.tags li {
+            display: inline-block;
+        }
+
+        .meta ul.tags li {
+            margin: 0 0.15em;
+        }
+
+        .meta ul.tags li:last-child {
+            margin-right: 0;
+        }
+
+        #pagination {
+            text-align: center;
+        }
+
+        #pagination a {
+            border: none;
+            text-decoration: none;
+        }
+
+        #pagination span {
+            margin: 0 0.5em;
+        }
+
+        #pagination a span {
+            border-bottom: 1px solid;
+            border-color: {color:Link Underline};
+            margin: 0;
+        }
+
+        #pagination a:hover span {
+            border-color: {color:Link Hover Underline};
+        }
+
+        #pagination a:visited span {
+            border-color: {color:Link Visited Underline};
+        }
+        
+        #footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;          
+            border-top: 1px solid {color:Footer Background};
+        }
+        
+        #footer .search {
+            position: relative;
+            float: right;
+        }
+
+        #footer .search input {
+            display: inline-block;
+        }        
+
+        .search_query, .tag {
+            font-weight: bold;
+        }
+
+        .clear {
+            clear: both;
+            font-size: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <div class="navigation">
+                <ul>
+                    <li><a href="/archive" class="fresh">{lang:Archive}</a></li>
+                    {block:HasPages}
+                        {block:Pages}<li><a href="{URL}" class="fresh">{Label}</a></li>{/block:Pages}
+                    {/block:HasPages}
+                </ul>
+            </div>
+            <div>
+                <a href="/" class="fresh">{Title}</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="content">
+            {block:TagPage}
+                <p>{lang:Posts tagged Tag 2}</p>
+            {/block:TagPage}
+
+            {block:SearchPage}
+              {block:SearchResults}
+                <p>{lang:Your search for SearchQuery returned SearchResultCount results 2}</p>
+              {block:SearchResults}
+            
+              {block:NoSearchResults}
+                <p>{lang:No search results for SearchQuery 2}</p>
+              {block:NoSearchResults}
+            {/block:SearchPage}
+
+            <ul id="posts">
+            {block:Posts}
+                {block:Text}
+                <li class="text">
+                    {block:Title}
+                    <h2>{Title}</h2>
+                    {/block:Title}
+                    <div class="post">
+                        {Body}
+                    </div>
+                {/block:Text}
+
+                {block:Quote}
+                <li class="quote">
+                    <blockquote>
+                        <p>{Quote}</p>
+                        {block:Source}<p>&mdash;&nbsp;{Source}</p>{/block:Source}
+                    </blockquote>
+                {/block:Quote}
+
+                {block:Audio}
+                <li class="audio">
+                    {AudioPlayerBlack}
+                    <p class="count">{lang:Played PlayCount times}</p>
+                    {block:Caption}
+                    <div class="post">
+                        {Caption}
+                    </div>
+                    {/block:Caption}
+                {/block:Audio}
+
+                {block:Link}
+                <li class="link">
+                    <h2><a href="{URL}" {Target}>{Name}</a></h2>
+                    {block:Description}
+                    <div class="post">
+                        {Description}
+                    </div>
+                    {/block:Description}
+                {/block:Link}
+
+                {block:Photo}
+                <li class="photo">
+                    <span class="photo-link">{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}</span>
+                    {block:Caption}
+                    <div class="post">
+                        {Caption}
+                    </div>
+                    {/block:Caption}
+                {/block:Photo}
+
+                {block:Photoset}
+                <li class="photoset">
+                    {Photoset-500}
+                    {block:Caption}
+                    <div class="post">
+                        {Caption}
+                    </div>
+                    {/block:Caption}
+                {/block:Photoset}
+
+                {block:Video}
+                <li class="video">
+                    {Video-500}
+                    {block:Caption}
+                    <div class="post">
+                        {Caption}
+                    </div>
+                    {/block:Caption}
+                {/block:Video}
+
+                {block:Chat}
+                    <li class="chat">
+                        <!--
+                        {block:Title}
+                        <h2>{Title}</h2>
+                        {/block:Title}
+                        <ul class="convo">
+                            {block:Lines}
+                            <li class="{Alt}">
+                                <span class="person">{block:Label}{Label}{/block:Label}</span>
+                                <span class="line">{Line}</span>
+                            </li>
+                            {/block:Lines}
+                        </ul>
+                        -->
+                {/block:Chat}
+                
+                    <div class="meta">
+                        {block:Date}
+                        <span title="{DayOfMonth} {Month}, {Year}, {24Hour}:{Minutes}">{TimeAgo}</span>
+                        {/block:Date}
+
+                        {block:HasTags}
+                        <ul class="tags">
+                            {block:Tags}
+                            <li><a href="{TagURL}">{Tag}</a></li>
+                            {/block:Tags}
+                        </ul>
+                        {/block:HasTags}
+
+                        <span><a href="{Permalink}" title="{lang:Permalink}">&infin;</a></span>
+                    </div>
+                </li>
+            {/block:Posts}
+            </ul>
+
+            {block:Pagination}
+            <div id="pagination">
+                {block:NextPage}<a href="{NextPage}">&larr; <span>{lang:Older entries}</span></a>{/block:NextPage}
+                <span>{lang:Page CurrentPage of TotalPages}</span>
+                {block:PreviousPage}<a href="{PreviousPage}"><span>{lang:Newer Entries}</span> &rarr;</a>{/block:PreviousPage}
+            </div>
+            {/block:Pagination}
+
+            {block:PermalinkPagination}
+            <div id="pagination">
+                {block:PreviousPost}<a href="{PreviousPost}">&larr; <span>{lang:Previous post}</span></a>{/block:PreviousPost}
+                <span>&nbsp;</span>
+                {block:NextPost}<a href="{NextPost}"><span>{lang:Next post}</span> &rarr;</a>{/block:NextPost}
+            </div>
+            {/block:PermalinkPagination}
+        </div>       
+        <div id="footer">
+            <div class="search">
+                <form action="/search" method="get">
+                    <input type="search" name="q" value="{SearchQuery}" placeholder="{lang:Search}" size="20"/>
+                    <input type="submit" value="{lang:Search}"/>
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</body>
+<html>
