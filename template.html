@@ -9,12 +9,11 @@
     <link rel="alternate" type="application/rss+xml" name="RSS" href="{RSS}"/>
 
     <!-- Default Colors -->
-    <meta name="color:Background" content="#FFFFFF"/>
+    <meta name="color:Background" content="#F9F9F9"/>
     <meta name="color:Text" content="#444444"/>
-    <meta name="color:Blockquote" content="#E6F1FD"/>
     <meta name="color:Date" content="#777777"/>
     <meta name="color:Header Background" content="#007AC2"/>
-    <meta name="color:Footer Background" content="#BBBBBB"/>
+    <meta name="color:Footer Background" content="#DDDDDD"/>
 
     <!-- Links -->
     <meta name="color:Link" content="#0055CC"/>
@@ -28,6 +27,11 @@
         html, body, ul, ol, li, dl, dt, dd, p, h1, h2, h3, h4, h5, h6, blockquote, form, fieldset, legend, table, td, th {
             margin: 0;
             padding: 0;
+        }
+
+        /* 100.1% is required for the js change font size functions, to allow 10% increments without rounding errors */
+        html {
+            font-size: 100.1%;
         }
 
         html, body {
@@ -108,11 +112,11 @@
         }
 
         blockquote {
+            border-top: 3px double {color:Footer Background};
+            border-bottom: 3px double {color:Footer Background};
             font-style: italic;
-            background-color: {color:Blockquote};
-            padding: 1em;
             margin-bottom: 1.33em;
-            border-radius: 2px;
+            padding: 1em;
         }
 
         blockquote p:last-child {
