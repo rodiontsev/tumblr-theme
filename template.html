@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -9,10 +8,12 @@
     <link rel="alternate" type="application/rss+xml" name="RSS" href="{RSS}"/>
 
     <!-- Default Colors -->
-    <meta name="color:Background" content="#F9F9F9"/>
     <meta name="color:Text" content="#444444"/>
-    <meta name="color:Date" content="#777777"/>
-    <meta name="color:Header Background" content="#007AC2"/>
+    <meta name="color:Quote Text" content="#555555"/>
+    <meta name="color:Date Text" content="#777777"/>
+
+    <meta name="color:Background" content="#F9F9F9"/>
+    <meta name="color:Header Background" content="#3482D6"/>
     <meta name="color:Footer Background" content="#DDDDDD"/>
 
     <!-- Links -->
@@ -112,11 +113,10 @@
         }
 
         blockquote {
-            border-top: 3px double {color:Footer Background};
-            border-bottom: 3px double {color:Footer Background};
-            font-style: italic;
-            margin-bottom: 1.33em;
-            padding: 1em;
+            color: {color:Quote Text};
+            border-left: 4px double {color:Footer Background};
+            margin: 0 0 1.33em 1em;
+            padding-left: 1em;
         }
 
         blockquote p:last-child {
@@ -206,7 +206,7 @@
 
         .meta {
             font-size: 0.875em;
-            color: {color:Date};
+            color: {color:Date Text};
         }
 
         .meta ul.tags, .meta span {
@@ -400,7 +400,7 @@
                 
                     <div class="meta">
                         {block:Date}
-                        <span title="{DayOfMonth} {Month}, {Year}, {24Hour}:{Minutes}">{TimeAgo}</span>
+                        <span title="{Month} {DayOfMonth}, {Year}, {24Hour}:{Minutes}">{TimeAgo}</span>
                         {/block:Date}
 
                         {block:HasTags}
@@ -443,5 +443,18 @@
             <div class="clear"></div>
         </div>
     </div>
+    <script type="text/javascript">
+        if (typeof(document.querySelectorAll) === 'function') {
+            var dates = document.querySelectorAll("div.meta span:first-child"); 
+            for (var i = 0; i < dates.length; i++) {
+                var date = dates[i];
+                var text = date.textContent;
+                if ((text.indexOf('week') != -1) || (text.indexOf('month') != -1) || (text.indexOf('year') != -1)) {
+                    var attr = date.getAttribute('title').split(',');
+                    date.textContent = attr[0] + ',' + attr[1];
+                }
+            }
+        }
+    </script>
 </body>
 <html>
